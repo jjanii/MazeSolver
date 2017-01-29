@@ -25,22 +25,23 @@ public class Dijkstra {
 
     public Stack<Pixel> algorithm() {
         Pixel start = maze.getStart();
-        start.setWeight(0);
+        start.setWeight(0); 
         PriorityQueue<Pixel> pq = new PriorityQueue<>();
         pq.add(start);
 
         while (!pq.isEmpty()) {
-            Pixel p = (Pixel) pq.poll();
+            Pixel p = pq.poll(); //Ota uusi pikseli läpikäytäväksi
 
             if (p == maze.getEnd()) {
-                break;
+                break; //Lopeta läpikäynti jos nykyinen kohta on maali
             }
 
-            ArrayList<Pixel> neighbours = p.getNeighbours();
-            for (Pixel neighbour : neighbours) {
-                relax(neighbour, p, pq);
+            ArrayList<Pixel> neighbours = p.getNeighbours(); //Hae pikselin naapurit
+            for (Pixel neighbour : neighbours) { // Käy läpi kaikki naapurit
+                relax(neighbour, p, pq); 
             }
-            p.setVisited(true);
+            
+            p.setVisited(true); //Merkitse nykyinen kohta läpikäydyksi
         }
         System.out.println("Ratkaistu");
         return shortestPath();
@@ -53,9 +54,10 @@ public class Dijkstra {
         } else {
             weight = 1;
         }
-
-        if (neighbour.getWeight() > pixel.getWeight() + weight && !neighbour.isVisited() && !neighbour.isWall()) {
-            neighbour.setWeight(weight + pixel.getWeight());
+        
+        int newWeight = pixel.getWeight() + weight;
+        if (neighbour.getWeight() > newWeight && !neighbour.isVisited() && !neighbour.isWall()) {
+            neighbour.setWeight(newWeight);
             neighbour.setPath(pixel);
             pq.add(neighbour);
         }

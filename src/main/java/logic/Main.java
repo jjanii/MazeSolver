@@ -1,3 +1,5 @@
+package logic;
+
 
 import algorithms.Dijkstra;
 import domain.Maze;

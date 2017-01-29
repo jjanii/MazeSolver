@@ -1,3 +1,5 @@
+package logic;
+
 
 import domain.Maze;
 import domain.Pixel;
@@ -39,7 +41,6 @@ public class MazeMaker {
             this.height = BImage.getHeight();
             this.width = BImage.getWidth();
         } catch (IOException ex) {
-            System.out.println("Kuvan lukeminen epäonnistui");
             error = true;
         }
     }
@@ -61,8 +62,6 @@ public class MazeMaker {
             }
         }
         if (maze.getStart() == null || maze.getEnd() == null) {
-            System.out.println("Aloitus- tai lopetuspistettä ei ole merkattu kuvaan");
-            error = true;
             return null;
         }
         setNeighbours(mazeArray);
@@ -144,7 +143,6 @@ public class MazeMaker {
             ImageIO.write(BImage, "png", output);
         } catch (IOException ex) {
             error = true;
-            //error
         }
 
     }

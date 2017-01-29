@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="MazeMakerTest" time="0.358" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="algorithms.DijkstraTest" time="5.774" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/jre/lib"/>
@@ -61,8 +61,6 @@
     <property name="project.build.outputDirectory" value="/Users/Jani/NetBeansProjects/MazeSolverMVN/target/generated-classes/cobertura"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="MazeMakerTest" name="correctStartAndEndLocations2" time="0.175"/>
-  <testcase classname="MazeMakerTest" name="correctStartAndEndLocation1" time="0.182"/>
-  <testcase classname="MazeMakerTest" name="mazeWithNoStartOrNoEndThrowsError" time="0"/>
-  <testcase classname="MazeMakerTest" name="errorOnWrongFilePath" time="0.001"/>
+  <testcase classname="algorithms.DijkstraTest" name="shortestPathEiPalautaTyhjaaPolkuaJosOnRatkaisu" time="5.774"/>
+  <testcase classname="algorithms.DijkstraTest" name="relaxTest" time="0"/>
 </testsuite>

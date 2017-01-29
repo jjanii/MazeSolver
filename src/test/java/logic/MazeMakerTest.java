@@ -1,9 +1,12 @@
+package logic;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
+import logic.MazeMaker;
 import domain.Maze;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -64,6 +67,14 @@ public class MazeMakerTest {
         assertEquals(138, m.getStart().getY());
         assertEquals(2, m.getEnd().getX());
         assertEquals(0, m.getEnd().getY());
+    }
+    
+    @Test
+    public void mazeWithNoStartOrNoEndThrowsError() {
+        MazeMaker maze = new MazeMaker("mazeNoMarkings.gif", "solution.gif");
+        Maze m = maze.imageToMaze();
+        
+        assertEquals(m, null);
     }
 
     // TODO add test methods here.

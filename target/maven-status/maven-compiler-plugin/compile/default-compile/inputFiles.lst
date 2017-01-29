@@ -1,6 +1,6 @@
-/Users/Jani/NetBeansProjects/MazeSolverMVN/src/main/java/Main.java
-/Users/Jani/NetBeansProjects/MazeSolverMVN/src/main/java/MazeMaker.java
+/Users/Jani/NetBeansProjects/MazeSolverMVN/src/main/java/logic/MazeMaker.java
 /Users/Jani/NetBeansProjects/MazeSolverMVN/src/main/java/domain/Maze.java
+/Users/Jani/NetBeansProjects/MazeSolverMVN/src/main/java/logic/Main.java
 /Users/Jani/NetBeansProjects/MazeSolverMVN/src/main/java/algorithms/Dijkstra.java
 /Users/Jani/NetBeansProjects/MazeSolverMVN/src/main/java/algorithms/AStar.java
 /Users/Jani/NetBeansProjects/MazeSolverMVN/src/main/java/domain/Pixel.java
