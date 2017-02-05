@@ -1,6 +1,7 @@
 package logic;
 
 
+import algorithms.AStar;
 import algorithms.Dijkstra;
 import domain.Maze;
 import java.util.Scanner;
@@ -11,11 +12,11 @@ import java.util.Scanner;
  * and open the template in the editor.
  */
 /**
- *
+ * 
  * @author Jani
  */
 public class Main {
-
+    
     public static void main(String[] args) {
 
         System.out.print("Tiedoston nimi: ");
@@ -34,6 +35,12 @@ public class Main {
 
     }
 
+    /**
+     * Ratkaistaan annettu labyrintti valitulla algoritmilla
+     * @param maze kuvasta luotu labyrintti 
+     * @param mazeMaker
+     * @param algo valittu algoritmi, 1 = Dijkstra 2 = A Star
+     */
     public static void solve(Maze maze, MazeMaker mazeMaker, int algo) {
         if (maze == null) {
             System.out.println("Maze = null.");
@@ -41,7 +48,7 @@ public class Main {
             if (algo == 1) {  // Piirrä uuteen tiedostoon Dijkstralla ratkottu reitti
                 mazeMaker.saveSolution(new Dijkstra(maze).algorithm());
             } else if (algo == 2) { // Piirrä uuteen tiedostoon A Starilla ratkottu reitti
-                // Ratkaise käyttämällä AStaria
+                mazeMaker.saveSolution(new AStar(maze).algorithm());
             }
         }
     }

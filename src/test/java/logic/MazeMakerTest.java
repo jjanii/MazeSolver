@@ -24,23 +24,6 @@ public class MazeMakerTest {
     public MazeMakerTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-    
-      
     @Test
     public void errorOnWrongFilePath() {
         MazeMaker maze = new MazeMaker("wrong_file_path.png", "solution.gif");
@@ -76,10 +59,4 @@ public class MazeMakerTest {
         
         assertEquals(m, null);
     }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }

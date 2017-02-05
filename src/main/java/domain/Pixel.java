@@ -5,11 +5,11 @@
  */
 package domain;
 
+import datastructures.List;
 import java.awt.Color;
-import java.util.ArrayList;
-
 /**
- *
+ * Edustaa yhtä pikseliä annetusta labyrinttikuvasta. 
+ * 
  * @author Jani
  */
 public class Pixel implements Comparable<Pixel> {
@@ -19,9 +19,10 @@ public class Pixel implements Comparable<Pixel> {
     private Color color;
     private int weight;
     private boolean wall;
-    private ArrayList<Pixel> neighbours = new ArrayList<>();
+    private List neighbours = new List();
     private boolean visited;
     private Pixel path;
+    private int prev;
 
     public Pixel(int x, int y, Color color) {
         this.x = x;
@@ -34,7 +35,7 @@ public class Pixel implements Comparable<Pixel> {
     public int getY() {
         return this.y;
     }
-
+    
     public int getX() {
         return this.x;
     }
@@ -46,7 +47,7 @@ public class Pixel implements Comparable<Pixel> {
     public void setWeight(int weight) {
         this.weight = weight;
     }
-
+    
     public Pixel getPath() {
         return this.path;
     }
@@ -67,7 +68,7 @@ public class Pixel implements Comparable<Pixel> {
         neighbours.add(pixel);
     }
 
-    public ArrayList getNeighbours() {
+    public List getNeighbours() {
         return this.neighbours;
     }
 
@@ -81,6 +82,14 @@ public class Pixel implements Comparable<Pixel> {
 
     public boolean isWall() {
         return this.wall;
+    }
+    
+    public void setPrevDist(int dist) {
+        this.prev = dist;
+    }
+    
+    public int getPrevDist() {
+        return this.prev;
     }
 
     @Override

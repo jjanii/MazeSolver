@@ -5,13 +5,14 @@
  */
 package algorithms;
 
+import datastructures.List;
+import datastructures.Stack;
 import domain.Maze;
 import domain.Pixel;
-import java.util.ArrayList;
 import java.util.PriorityQueue;
-import java.util.Stack;
 
 /**
+ * Dijkstran algoritmi lyhimmän reitin etsimiseen toteutettuna javalla
  *
  * @author Jani
  */
@@ -23,38 +24,45 @@ public class Dijkstra {
         this.maze = maze;
     }
 
-    public Stack<Pixel> algorithm() {
+    /**
+     * Dijkstran algoritmi lyhimmän reitin ratkaisemiseen
+     *
+     * @return kutsuu shortestPath() metodia joka hakee lyhimmän polun
+     */
+    public Stack algorithm() {
         Pixel start = maze.getStart();
-        start.setWeight(0); 
+        start.setWeight(0);
         PriorityQueue<Pixel> pq = new PriorityQueue<>();
         pq.add(start);
 
         while (!pq.isEmpty()) {
-            Pixel p = pq.poll(); //Ota uusi pikseli läpikäytäväksi
+            Pixel p = pq.poll();
 
             if (p == maze.getEnd()) {
-                break; //Lopeta läpikäynti jos nykyinen kohta on maali
+                break;
             }
 
-            ArrayList<Pixel> neighbours = p.getNeighbours(); //Hae pikselin naapurit
-            for (Pixel neighbour : neighbours) { // Käy läpi kaikki naapurit
-                relax(neighbour, p, pq); 
+            List neighbours = p.getNeighbours();
+
+            for (int i = 0; i < neighbours.size(); i++) {
+                relax(neighbours.get(i), p, pq);
             }
-            
-            p.setVisited(true); //Merkitse nykyinen kohta läpikäydyksi
+
+            p.setVisited(true);
         }
-        System.out.println("Ratkaistu");
         return shortestPath();
     }
 
+    /**
+     * Metodissa asetetaan Pixeleille painot naapureihin
+     *
+     * @param neighbour pikselin naapuri
+     * @param pixel läpikäytävänä oleva pikseli
+     * @param pq
+     */
     public void relax(Pixel neighbour, Pixel pixel, PriorityQueue<Pixel> pq) {
-        int weight = 0;
-        if (pixel.getX() != neighbour.getX() && pixel.getY() != neighbour.getY()) {
-            weight = 2;
-        } else {
-            weight = 1;
-        }
-        
+        int weight = (neighbour.getX() != pixel.getX() && neighbour.getY() != pixel.getY()) ? 2 : 1;
+
         int newWeight = pixel.getWeight() + weight;
         if (neighbour.getWeight() > newWeight && !neighbour.isVisited() && !neighbour.isWall()) {
             neighbour.setWeight(newWeight);
@@ -63,11 +71,16 @@ public class Dijkstra {
         }
     }
 
-    public Stack<Pixel> shortestPath() {
-        Stack<Pixel> path = new Stack<>();
+    /**
+     * Lyhin reitti jonoon
+     *
+     * @return palauttaa jonon, päälimmäisenä alkupiste, pohjalla lopetuspiste
+     */
+    public Stack shortestPath() {
+        Stack path = new Stack();
         Pixel p = maze.getEnd();
         while (p != null) {
-            path.add(p);
+            path.push(p);
             p = p.getPath();
         }
 

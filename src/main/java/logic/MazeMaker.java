@@ -1,13 +1,13 @@
 package logic;
 
 
+import datastructures.Stack;
 import domain.Maze;
 import domain.Pixel;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Stack;
 import javax.imageio.ImageIO;
 
 /*
@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
  * and open the template in the editor.
  */
 /**
- *
+ * Luokan tehtävänä on kuvatiedoston lukeminen ja muuttaminen helpostikäsiteltävämpään muotoon
  * @author Jani
  */
 public class MazeMaker {
@@ -26,6 +26,7 @@ public class MazeMaker {
     protected int height;
     protected int width;
     public boolean error = false; //for testing purposes
+    
     /**
      * Konstruktorissa luetaan annettu tiedosto ja muutetaan se buffered imageksi
      *
@@ -132,10 +133,10 @@ public class MazeMaker {
      * 
      * @param path reitti
      */
-    public void saveSolution(Stack<Pixel> path) {
+    public void saveSolution(Stack path) {
         try {
             int color = Color.BLUE.getRGB();
-            while (!path.isEmpty()) {
+            while (!path.empty()) {
                 Pixel p = path.pop(); 
                 BImage.setRGB(p.getX(), p.getY(), color);
             }

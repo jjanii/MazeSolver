@@ -6,7 +6,8 @@
 package domain;
 
 /**
- *
+ * Luokka sisältää kaksiulotteisen taulukon joka kuvastaa annettua kuvaa, sekä aloitus- ja
+ * lopetuspisteet erillisinä arvoina.
  * @author Jani
  */
 public class Maze {
@@ -34,7 +35,7 @@ public class Maze {
     public Pixel getEnd() {
         return end;
     }
-
+    
     public void setEnd(Pixel pixel) {
         this.end = pixel;
     }

@@ -5,12 +5,15 @@
  */
 package algorithms;
 
-
-import logic.MazeMaker;
 import domain.Maze;
 import domain.Pixel;
 import java.awt.Color;
 import java.util.PriorityQueue;
+import logic.MazeMaker;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,33 +21,21 @@ import static org.junit.Assert.*;
  *
  * @author Jani
  */
-public class DijkstraTest {
+public class AStarTest {
 
-    public DijkstraTest() {
+    public AStarTest() {
     }
 
     @Test
     public void relaxTest() {
-        Maze maze = new Maze();
-        
-        Dijkstra d = new Dijkstra(maze);
-        PriorityQueue<Pixel> pq = new PriorityQueue<>();
-        
-        Pixel p1 = new Pixel(0, 0, Color.BLUE);
-        p1.setWeight(10);
-        
-        Pixel p2 = new Pixel(0, 0, Color.RED);
-        p2.setWeight(20);
-        
-        d.relax(p2, p1, pq);
-        assertEquals(p2.getPath(), p1);
+        //TODO
     }
-    
+
     @Test
     public void shortestPathEiPalautaTyhjaaPolkuaJosOnRatkaisu() {
         MazeMaker maze = new MazeMaker("maze1.gif", "solution.gif");
         Maze m = maze.imageToMaze();
-        Dijkstra d = new Dijkstra(m);
-        assertTrue(!d.algorithm().empty());
-   }
+        AStar a = new AStar(m);
+        assertTrue(!a.algorithm().empty());
+    }
 }
