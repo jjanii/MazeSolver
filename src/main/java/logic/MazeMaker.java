@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -37,7 +38,7 @@ public class MazeMaker {
     public MazeMaker(String file, String output) {
         this.savename = output;
         try {
-            File image = new File(file);
+            File image = new File("resources/" + file);
             BImage = ImageIO.read(image);
             this.height = BImage.getHeight();
             this.width = BImage.getWidth();
@@ -140,12 +141,17 @@ public class MazeMaker {
                 Pixel p = path.pop(); 
                 BImage.setRGB(p.getX(), p.getY(), color);
             }
-            File output = new File(savename);
+            File output = new File("resources/" + savename);
             ImageIO.write(BImage, "png", output);
+            msgbox("Ratkaistu reitti tallennettu kansioon resources");
         } catch (IOException ex) {
             error = true;
         }
 
+    }
+    
+    private void msgbox(String s) {
+        JOptionPane.showMessageDialog(null, s);
     }
 
 }

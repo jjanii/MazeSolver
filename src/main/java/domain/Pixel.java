@@ -19,7 +19,7 @@ public class Pixel implements Comparable<Pixel> {
     private Color color;
     private int weight;
     private boolean wall;
-    private List neighbours = new List();
+    private List neighbours;
     private boolean visited;
     private Pixel path;
     private int prev;
@@ -27,6 +27,7 @@ public class Pixel implements Comparable<Pixel> {
     public Pixel(int x, int y, Color color) {
         this.x = x;
         this.y = y;
+        this.neighbours = new List();
         this.color = color;
         this.wall = false;
         this.visited = false;

@@ -6,10 +6,10 @@
 package algorithms;
 
 import datastructures.List;
+import datastructures.MinHeap;
 import datastructures.Stack;
 import domain.Maze;
 import domain.Pixel;
-import java.util.PriorityQueue;
 
 /**
  * Dijkstran algoritmi lyhimmän reitin etsimiseen toteutettuna javalla
@@ -32,11 +32,11 @@ public class Dijkstra {
     public Stack algorithm() {
         Pixel start = maze.getStart();
         start.setWeight(0);
-        PriorityQueue<Pixel> pq = new PriorityQueue<>();
-        pq.add(start);
+        MinHeap heap = new MinHeap();
+        heap.insert(start);
 
-        while (!pq.isEmpty()) {
-            Pixel p = pq.poll();
+        while (!heap.isEmpty()) {
+            Pixel p = heap.heapDelMin();
 
             if (p == maze.getEnd()) {
                 break;
@@ -45,7 +45,7 @@ public class Dijkstra {
             List neighbours = p.getNeighbours();
 
             for (int i = 0; i < neighbours.size(); i++) {
-                relax(neighbours.get(i), p, pq);
+                relax(neighbours.get(i), p, heap);
             }
 
             p.setVisited(true);
@@ -58,16 +58,16 @@ public class Dijkstra {
      *
      * @param neighbour pikselin naapuri
      * @param pixel läpikäytävänä oleva pikseli
-     * @param pq
+     * @param heap
      */
-    public void relax(Pixel neighbour, Pixel pixel, PriorityQueue<Pixel> pq) {
+    public void relax(Pixel neighbour, Pixel pixel, MinHeap heap) {
         int weight = (neighbour.getX() != pixel.getX() && neighbour.getY() != pixel.getY()) ? 2 : 1;
 
         int newWeight = pixel.getWeight() + weight;
         if (neighbour.getWeight() > newWeight && !neighbour.isVisited() && !neighbour.isWall()) {
             neighbour.setWeight(newWeight);
             neighbour.setPath(pixel);
-            pq.add(neighbour);
+            heap.insert(neighbour);
         }
     }
 

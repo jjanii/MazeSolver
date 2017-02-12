@@ -6,11 +6,11 @@
 package algorithms;
 
 
+import datastructures.MinHeap;
 import logic.MazeMaker;
 import domain.Maze;
 import domain.Pixel;
 import java.awt.Color;
-import java.util.PriorityQueue;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -28,7 +28,7 @@ public class DijkstraTest {
         Maze maze = new Maze();
         
         Dijkstra d = new Dijkstra(maze);
-        PriorityQueue<Pixel> pq = new PriorityQueue<>();
+        MinHeap heap = new MinHeap();
         
         Pixel p1 = new Pixel(0, 0, Color.BLUE);
         p1.setWeight(10);
@@ -36,7 +36,7 @@ public class DijkstraTest {
         Pixel p2 = new Pixel(0, 0, Color.RED);
         p2.setWeight(20);
         
-        d.relax(p2, p1, pq);
+        d.relax(p2, p1, heap);
         assertEquals(p2.getPath(), p1);
     }
     

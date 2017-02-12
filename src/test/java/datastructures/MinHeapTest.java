@@ -5,6 +5,8 @@
  */
 package datastructures;
 
+import domain.Pixel;
+import java.awt.Color;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,29 +19,73 @@ import static org.junit.Assert.*;
  * @author Jani
  */
 public class MinHeapTest {
-    
+
     public MinHeapTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+
+    @Test
+    public void afterInsertingPixelsSmallestPixelIsOnTop() {
+        MinHeap heap = new MinHeap();
+        Pixel p1 = new Pixel(0, 0, Color.red);
+        Pixel p2 = new Pixel(0, 0, Color.red);
+        Pixel p3 = new Pixel(0, 0, Color.red);
+        Pixel p4 = new Pixel(0, 0, Color.red);
+        p1.setWeight(1);
+        p2.setWeight(50);
+        p3.setWeight(25);
+        p4.setWeight(9999);
+
+        heap.insert(p4);
+        heap.insert(p3);
+        heap.insert(p1);
+        heap.insert(p2);
+
+        assertEquals(p1, heap.heapDelMin());
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void afterRemovingSmallestValueTheSecondHighestValueIsOnTop() {
+        MinHeap heap = new MinHeap();
+        Pixel p1 = new Pixel(0, 0, Color.red);
+        Pixel p2 = new Pixel(0, 0, Color.red);
+        Pixel p3 = new Pixel(0, 0, Color.red);
+        Pixel p4 = new Pixel(0, 0, Color.red);
+        p1.setWeight(1);
+        p2.setWeight(50);
+        p3.setWeight(25);
+        p4.setWeight(9999);
+
+        heap.insert(p4);
+        heap.insert(p3);
+        heap.insert(p1);
+        heap.insert(p2);
+
+        heap.heapDelMin();
+        assertEquals(p3, heap.heapDelMin());
+
+    }
+
+    @Test
+    public void heapIsEmptyAfterDeletingAllPixels() {
+        MinHeap heap = new MinHeap();
+        Pixel p1 = new Pixel(0, 0, Color.red);
+        Pixel p2 = new Pixel(0, 0, Color.red);
+        Pixel p3 = new Pixel(0, 0, Color.red);
+        Pixel p4 = new Pixel(0, 0, Color.red);
+        p1.setWeight(1);
+        p2.setWeight(50);
+        p3.setWeight(25);
+        p4.setWeight(9999);
+
+        heap.insert(p4);
+        heap.insert(p3);
+        heap.insert(p1);
+        heap.insert(p2);
+
+        heap.heapDelMin();
+        heap.heapDelMin();
+        heap.heapDelMin();
+        heap.heapDelMin();
+        assertTrue(heap.isEmpty());
+    }
 }
