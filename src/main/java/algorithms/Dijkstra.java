@@ -61,7 +61,7 @@ public class Dijkstra {
      * @param heap
      */
     public void relax(Pixel neighbour, Pixel pixel, MinHeap heap) {
-        int weight = (neighbour.getX() != pixel.getX() && neighbour.getY() != pixel.getY()) ? 2 : 1;
+        int weight = (neighbour.getX() != pixel.getX() && neighbour.getY() != pixel.getY()) ? 1 : 0;
 
         int newWeight = pixel.getWeight() + weight;
         if (neighbour.getWeight() > newWeight && !neighbour.isVisited() && !neighbour.isWall()) {

@@ -1,6 +1,5 @@
 package logic;
 
-
 import datastructures.Stack;
 import domain.Maze;
 import domain.Pixel;
@@ -17,7 +16,9 @@ import javax.swing.JOptionPane;
  * and open the template in the editor.
  */
 /**
- * Luokan tehtävänä on kuvatiedoston lukeminen ja muuttaminen helpostikäsiteltävämpään muotoon
+ * Luokan tehtävänä on kuvatiedoston lukeminen ja muuttaminen
+ * helpostikäsiteltävämpään muotoon
+ *
  * @author Jani
  */
 public class MazeMaker {
@@ -27,9 +28,10 @@ public class MazeMaker {
     protected int height;
     protected int width;
     public boolean error = false; //for testing purposes
-    
+
     /**
-     * Konstruktorissa luetaan annettu tiedosto ja muutetaan se buffered imageksi
+     * Konstruktorissa luetaan annettu tiedosto ja muutetaan se buffered
+     * imageksi
      *
      * @param file on kuvan nimi
      * @param output on tallennettavan ratkaisun nimi
@@ -38,8 +40,7 @@ public class MazeMaker {
     public MazeMaker(String file, String output) {
         this.savename = output;
         try {
-            File image = new File("resources/" + file);
-            BImage = ImageIO.read(image);
+            BImage = ImageIO.read(new File("resources/" + file));
             this.height = BImage.getHeight();
             this.width = BImage.getWidth();
         } catch (IOException ex) {
@@ -49,8 +50,8 @@ public class MazeMaker {
 
     /**
      * Metodi muuntaa aiemmin konstruktorissa annetun tiedoston
-     * kaksiulotteiseksi taulukoksi, ja kutsuu setNeighbours metodia
-     * naapureiden asettamiseksi.
+     * kaksiulotteiseksi taulukoksi, ja kutsuu setNeighbours metodia naapureiden
+     * asettamiseksi.
      *
      * @return palauttaa mazen joka sisältää 2 ulotteisen taulukon,
      * aloituspisteen, sekä maalipisteen.
@@ -73,18 +74,18 @@ public class MazeMaker {
     }
 
     /**
-     * Luodaan Pixel luokka annetusta kuvan pikselistä, ja lisätään ne Mazeen. 
-     * Jos pikseli on punainen, merkataan se aloituspisteeksi, jos sininen niin maaliksi.
-     * 
+     * Luodaan Pixel luokka annetusta kuvan pikselistä, ja lisätään ne Mazeen.
+     * Jos pikseli on punainen, merkataan se aloituspisteeksi, jos sininen niin
+     * maaliksi.
+     *
      * @param y pikselin Y-kordinaatti
      * @param x pikselin X-kordinaatti
      * @param maze maze jota käsitellään
      * @param mazeArray mazeen talletettava mazeArray
      */
-    
     protected void createPixel(int x, int y, Maze maze, Pixel[][] mazeArray) {
         int color = BImage.getRGB(x, y);
-        
+
         Pixel pixel = new Pixel(x, y, new Color(color));
         if (pixel.getColor().equals(Color.RED)) {
             maze.setStart(pixel);
@@ -93,13 +94,13 @@ public class MazeMaker {
         } else if (pixel.getColor().getRGB() < -100000) {
             pixel.setWall(true);
         }
-        pixel.setWeight(Integer.MAX_VALUE); 
+        pixel.setWeight(Integer.MAX_VALUE);
         mazeArray[x][y] = pixel;
     }
 
     /**
-     * Metodi laskee kaksiulotteisen taulukon jokaiselle pikselille sen naapurit ja asettaa ne
-     * kyseisen pikselin naapurit -listaan.
+     * Metodi laskee kaksiulotteisen taulukon jokaiselle pikselille sen naapurit
+     * ja asettaa ne kyseisen pikselin naapurit -listaan.
      *
      */
     private void setNeighbours(Pixel[][] maze) {
@@ -122,23 +123,25 @@ public class MazeMaker {
      *
      * @param x Pikselin x koordinaatti
      * @param y Pikselin y koordinaati
-     * @return palauttaa true/false riippuen ylittääkö pikseli annetun labyrintin rajoja
+     * @return palauttaa true/false riippuen ylittääkö pikseli annetun
+     * labyrintin rajoja
      */
     public boolean bordercheck(int x, int y) {
         return !(x >= 0 && x < width && y < height && y >= 0);
     }
 
     /**
-     * Metodi käy annetun pinon läpi, hakee pikselin X ja Y koordinaatit ja värjää
-     * annetussa kuvassa oikeilla paikoilla olevan pikselin pisteen punaiseksi. 
-     * 
+     * Metodi käy annetun pinon läpi, hakee pikselin X ja Y koordinaatit ja
+     * värjää annetussa kuvassa oikeilla paikoilla olevan pikselin pisteen
+     * punaiseksi.
+     *
      * @param path reitti
      */
     public void saveSolution(Stack path) {
         try {
             int color = Color.BLUE.getRGB();
             while (!path.empty()) {
-                Pixel p = path.pop(); 
+                Pixel p = path.pop();
                 BImage.setRGB(p.getX(), p.getY(), color);
             }
             File output = new File("resources/" + savename);
@@ -149,7 +152,7 @@ public class MazeMaker {
         }
 
     }
-    
+
     private void msgbox(String s) {
         JOptionPane.showMessageDialog(null, s);
     }

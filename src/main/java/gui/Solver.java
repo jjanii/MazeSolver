@@ -18,6 +18,7 @@ import logic.MazeMaker;
 
 /**
  * Käyttöliittymän Solve-napin toiminta
+ *
  * @author Jani
  */
 public class Solver implements ActionListener {
@@ -44,7 +45,7 @@ public class Solver implements ActionListener {
         solve();
     }
 
-     /**
+    /**
      * Ratkaistaan annettu labyrintti valitulla algoritmilla
      */
     public void solve() {

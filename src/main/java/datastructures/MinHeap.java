@@ -21,6 +21,10 @@ public class MinHeap {
         heap = new Pixel[1];
         size = 0;
     }
+    
+    public int size() {
+        return this.size;
+    }
 
     /**
      * Palauttaa parametrin vanhemman
