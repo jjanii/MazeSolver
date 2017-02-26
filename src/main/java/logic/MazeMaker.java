@@ -7,7 +7,9 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /*
@@ -146,7 +148,9 @@ public class MazeMaker {
             }
             File output = new File("resources/" + savename);
             ImageIO.write(BImage, "png", output);
-            msgbox("Ratkaistu reitti tallennettu kansioon resources");
+            ImageIcon icon = new ImageIcon("resources/" + savename);
+            JOptionPane.showMessageDialog(null, "", "Ratkaistu reitti (resources/" + savename + ")", JOptionPane.INFORMATION_MESSAGE, icon);
+            icon.getImage().flush();
         } catch (IOException ex) {
             error = true;
         }

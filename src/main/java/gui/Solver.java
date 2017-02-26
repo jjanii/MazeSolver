@@ -11,7 +11,6 @@ import domain.Maze;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import logic.MazeMaker;
@@ -58,7 +57,6 @@ public class Solver implements ActionListener {
         } else {
             if (selected == 1) {  // Piirrä uuteen tiedostoon Dijkstralla ratkottu reitti
                 mazeMaker.saveSolution(new Dijkstra(maze).algorithm());
-
             } else if (selected == 2) { // Piirrä uuteen tiedostoon A Starilla ratkottu reitti
                 mazeMaker.saveSolution(new AStar(maze).algorithm());
             }
